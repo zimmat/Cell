@@ -1,45 +1,70 @@
 var userOne = "Walter sent: Hello. I’ve got Faceblock and Instantgam. I’m too old for the other ones.";
-  userOne = userOne.slice(0, -33);
-userOne = userOne.split("sent: Hello. I’ve got ");
-
-var first = [];
-userOne.forEach(function(user) {
-  first.push(user.split("and"));
-});
-//   console.log(userOne);
- console.log(first);
-
+userOne = userOne.split(" ");
 var userTwo = "Jesse sent: Yo! I’ve got ‘em all. Tooter, Faceblock, Instantgam, Snaptalk, LankedOn.";
-if (userTwo[userTwo.length - 1] === ".")
-  userTwo = userTwo.slice(0, -1);
-userTwo = userTwo.split("sent: Yo! I’ve got ‘em all.");
-
-var two = [];
-userTwo.forEach(function(user) {
-  two.push(user.split(","));
-});
-
-console.log(two);
-
+userTwo = userTwo.split(" ");
 var userThree = "Saul sent: I’m on LankedOn for Business. And I have an Instantgam account for my cats. Oh, and Faceblock for my ex-husbands.";
-userThree = userThree.slice(0, -20);
-userThree = userThree.replace("for Business. And I have an Instantgam account for my cats.","Instantgam");
-userThree = userThree.split("sent: I’m on");
+userThree = userThree.split(" ");
+var userFour = "Gus sent: I use Tooter and Instantgam. My customers aren’t on the others, so I can’t get them to engage with my brand there.";
+userFour = userFour.split(" ");
 
-var three = [];
-userThree.forEach(function(userThree){
- three.push(userThree.split("Oh, and "));
+// Removing punctuation using regex
+var cleanMystring = function(string){
+  var cleanString = [];
+  userOne.forEach(function(string){
+    string = string.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+  cleanString.push(string);
 });
-console.log(three);
-// var threee = [];
-// three.forEach(function(userThree){
-//  threee.push(userThree.split(" account for my cats. Oh, and "));
+
+  return cleanString;
+ };
+var One = cleanMystring(userOne);
+console.log(One);
+var Two = cleanMystring(userTwo);
+console.log(Two);
+var Three = cleanMystring(userThree);
+console.log(Three);
+var Four = cleanMystring(userFour);
+console.log(Four);
+// var infoOne = [];
+// userOne.forEach(function(userInfo) {
+//   var cleanString = userInfo.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+//   infoOne.push(cleanString);
 // });
-// console.log(threee);
+// var infoTwo = [];
+// userTwo.forEach(function(userInfo) {
+//   var cleanString = userInfo.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+//   infoTwo.push(cleanString);
+// });
+// var infoThree = [];
+// userThree.forEach(function(userInfo) {
+//   var cleanString = userInfo.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+//   infoThree.push(cleanString);
+// });
+// var infoFour = [];
+// userFour.forEach(function(userInfo) {
+//   var cleanString = userInfo.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+//   infoFour.push(cleanString);
+// });
+// creating a function to search for apps
+var findApps = function(app) {
+  var userApplications = [];
 
-// var userFour = "Gus sent: I use Tooter and Instantgam. My customers aren’t on the others, so I can’t get them to engage with my brand there.";
+  for (i = 0; i < app.length; i++) {
+    if (app[i] === "Faceblock" || app[i] === "Instantgam" || app[i] === "Snaptalk" || app[i] === "Tooter" || app[i] === "LankedOn") {
 
-// var userOneData = "Walter sent: It was 67MB. Is that everything? I’m busy, you know.";
-// var userTwoData = "Jesse sent: Damn, it was like 300MB. Dat Snaptalk is a data hog, yo.";
-// var userThreeData = "Saul sent: I think 283MB. That’s what the guy at the store said. I think it means MegaBites.";
-// var userFourData = "Gus sent: Around 150MB. I have the receipts if you need more precise figures.";
+      userApplications.push(app[i]);
+    }
+  }
+  return userApplications;
+
+};
+
+// printing applications for each user
+var walter = findApps(userOne);
+console.log(walter);
+var jesse = findApps(userTwo);
+console.log(jesse);
+var saul = findApps(userThree);
+console.log(saul);
+var gus = findApps(userFour);
+console.log(gus);
